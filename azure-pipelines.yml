@@ -9,10 +9,12 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: 'Restore $(buildConfiguration)'
   inputs:
     command: 'restore'
+    projects: '**/Appliction/*.csproj'
     feedsToUse: 'select'
-    vstsFeed: 'my-test-feed'
+    vstsFeed: 'my-pipeline-feed'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build $(buildConfiguration)'
@@ -32,6 +34,7 @@ steps:
   displayName: 'Publish $(buildConfiguration)'
   inputs:
     command: 'publish'
+    projects: '**/Appliction/*.csproj'
     publishWebProjects: True
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
