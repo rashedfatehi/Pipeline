@@ -42,6 +42,6 @@ steps:
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact $(buildConfiguration)'
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifactType: 'pipeline'
-    artifactName: 'drop'
+    artifactName: 'Pipeline-Application'
